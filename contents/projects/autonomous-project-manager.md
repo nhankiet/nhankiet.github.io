@@ -1,6 +1,6 @@
 ---
 title: "Autonomous AI Project Brain"
-description: "Agentic workflow system utilizing TAO hierarchy for automated Jira prioritization."
+description: "Agentic workflow system utilizing advanced prompt engineering for automated Jira prioritization."
 date: "2025-01-05T16:00:00Z"
 ---
 

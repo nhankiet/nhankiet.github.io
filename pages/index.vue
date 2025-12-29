@@ -5,8 +5,8 @@
       <div class="relative">
          <div class="absolute -inset-1 rounded-lg bg-gradient-to-r from-green-600 to-emerald-600 opacity-20 blur-xl animate-pulse"></div>
          <h1 class="relative text-5xl font-extrabold tracking-tighter sm:text-6xl md:text-7xl lg:text-8xl bg-clip-text text-transparent bg-gradient-to-b from-white to-white/70">
-          Building Digital <br class="hidden sm:block" />
-          <span class="text-green-500">Experiences</span>
+          Nhan Kiet <br class="hidden sm:block" />
+          <span class="text-green-500">To</span>
         </h1>
       </div>
       

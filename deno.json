@@ -5,7 +5,7 @@
         "generate": "deno run -A npm:nuxi generate",
         "preview": "deno run -A npm:nuxi preview",
         "postinstall": "deno run -A npm:nuxi prepare",
-        "deploy": "deno task generate && deno run -A npm:gh-pages -d .output/public -t true"
+        "deploy": "deno task generate && npx gh-pages -d .output/public --dotfiles"
     },
     "compilerOptions": {
         "jsx": "react-jsx",

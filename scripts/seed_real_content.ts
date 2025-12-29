@@ -32,7 +32,7 @@ const projects = [
     {
         slug: 'autonomous-project-manager',
         title: 'Autonomous AI Project Brain',
-        description: 'Agentic workflow system utilizing TAO hierarchy for automated Jira prioritization.',
+        description: 'Agentic workflow system utilizing advanced prompt engineering for automated Jira prioritization.',
         date: '2025-01-05T16:00:00Z',
         content: 'Implemented an AI agent system that acts as a technical project manager, analyzing Slack context to draft and rank Jira tickets.'
     },
@@ -100,7 +100,7 @@ const blogPosts = [
         title: 'Training Teams for "Vibe Coding"',
         description: 'Upskilling departments to leverage AI-assisted development effectively.',
         date: '2025-02-10T16:00:00Z',
-        content: 'Its not just about using ChatGPT; its about the prompt hierarchy. I trained 5 teams on the TAO methodology to boost engineering velocity...'
+        content: 'Its not just about using ChatGPT; its about structured AI communication. I optimized departmental workflows to leverage large language models, significantly boosting engineering velocity...'
     },
     {
         slug: 'serverless-data-engineering',

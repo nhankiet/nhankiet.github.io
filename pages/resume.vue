@@ -67,7 +67,6 @@
                 <ul class="list-disc list-inside space-y-2 text-muted-foreground text-sm group-hover:text-white/80 transition-colors">
                   <li>Cut AI operation costs by $120k+ per annum by developing an internal MCP Atlassian server.</li>
                   <li>Pioneered the development and adoption of Model Context Protocol (MCP) for AI models (GitHub, Slack, Glean, Atlassian).</li>
-                  <li>Implemented TAO PROMPT FILE HIERARCHY and trained 5 departmental teams for uplift.</li>
                 </ul>
               </div>
 

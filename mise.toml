@@ -3,7 +3,4 @@ deno = "2.6.3"
 
 [tasks]
 dev = "deno task dev"
-build = "deno task build"
-generate = "deno task generate"
-preview = "deno task preview"
 deploy = "deno task deploy"
