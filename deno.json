@@ -5,6 +5,7 @@
         "generate": "deno run -A npm:nuxi generate",
         "preview": "deno run -A npm:nuxi preview",
         "postinstall": "deno run -A npm:nuxi prepare",
+        "install": "deno install",
         "deploy": "deno task generate && npx gh-pages -d .output/public --dotfiles"
     },
     "compilerOptions": {

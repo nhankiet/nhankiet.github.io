@@ -12,15 +12,12 @@
           <Download class="w-4 h-4 mr-2" />
           Download PDF
         </Button>
-        <Button size="sm" class="bg-green-600 hover:animate-google-gas text-white transition-all duration-700 border-none relative overflow-hidden group/btn px-6 py-2 shadow-[0_0_15px_rgba(22,163,74,0.3)]">
-           <NuxtLink to="mailto:hi@nhanto.me" class="relative z-10 flex items-center gap-2 font-bold">
+        <OrganicGasButton size="sm" class="rounded px-6 py-2 shadow-[0_0_15px_rgba(22,163,74,0.3)]">
+           <NuxtLink to="mailto:hi@nhanto.me" class="flex items-center gap-2 font-bold">
              <Send class="w-4 h-4" />
              Contact Me
            </NuxtLink>
-           <!-- Gas Swirl Layer -->
-           <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle,rgba(22,163,74,0.5)_0%,rgba(16,185,129,0.2)_40%,transparent_70%)] opacity-70 group-hover/btn:animate-gas-swirl pointer-events-none" />
-           <div class="absolute inset-0 bg-green-700/60 mix-blend-overlay" />
-        </Button>
+        </OrganicGasButton>
       </div>
     </div>
 
@@ -42,8 +39,7 @@
         
         <div class="space-y-6">
           <!-- Multi-Role Card for Sportsbet -->
-          <Card class="group relative overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(34,197,94,0.1)] border-[3px] border-white/10 bg-card/50 hover:border-green-500/20 mx-4">
-             <div class="absolute inset-0 bg-green-500/0 group-hover:bg-green-500/[0.02] transition-colors duration-500" />
+          <SpotlightCard class="bg-card/50 mx-4">
              
             <CardHeader>
               <div class="flex justify-between items-start">
@@ -104,11 +100,10 @@
                 </ul>
               </div>
             </CardContent>
-          </Card>
+          </SpotlightCard>
 
           <!-- Intellificial -->
-          <Card class="group relative overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(34,197,94,0.1)] border-[3px] border-white/10 bg-card/50 hover:border-green-500/20 mx-4">
-             <div class="absolute inset-0 bg-green-500/0 group-hover:bg-green-500/[0.02] transition-colors duration-500" />
+          <SpotlightCard class="bg-card/50 mx-4">
             <CardHeader>
               <div class="flex justify-between items-start">
                 <div>
@@ -124,11 +119,10 @@
                 <li>Increased invoice recognition accuracy by 7% using EasyOCR.</li>
               </ul>
             </CardContent>
-          </Card>
+          </SpotlightCard>
 
           <!-- TMA Solutions -->
-          <Card class="group relative overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(34,197,94,0.1)] border-[3px] border-white/10 bg-card/50 hover:border-green-500/20 mx-4">
-             <div class="absolute inset-0 bg-green-500/0 group-hover:bg-green-500/[0.02] transition-colors duration-500" />
+          <SpotlightCard class="bg-card/50 mx-4">
             <CardHeader>
               <div class="flex justify-between items-start">
                 <div>
@@ -145,7 +139,7 @@
                 <li>Achieved 73% accuracy through fine-tuning model parameters.</li>
               </ul>
             </CardContent>
-          </Card>
+          </SpotlightCard>
         </div>
       </section>
 
@@ -154,8 +148,7 @@
         <h2 class="text-2xl font-semibold tracking-tight border-b border-white/5 pb-2 text-white/90">Education</h2>
         
         <div class="grid gap-6 md:grid-cols-2">
-            <Card class="group relative overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(34,197,94,0.1)] border-[3px] border-white/10 bg-card/50 hover:border-green-500/20">
-              <div class="absolute inset-0 bg-green-500/0 group-hover:bg-green-500/[0.02] transition-colors duration-500" />
+            <SpotlightCard class="bg-card/50">
               <CardHeader>
                   <CardTitle class="text-[1.55rem] font-bold text-green-400">Master of Information Technology</CardTitle>
                   <CardDescription class="text-lg font-mono text-white/50">University of Melbourne • 2019 - 2021</CardDescription>
@@ -163,10 +156,9 @@
               <CardContent>
                   <p class="text-base text-muted-foreground">Major in AI • Awarded School of Engineering and Foundation Scholarships ($30k total)</p>
               </CardContent>
-            </Card>
+            </SpotlightCard>
 
-            <Card class="group relative overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(34,197,94,0.1)] border-[3px] border-white/10 bg-card/50 hover:border-green-500/20">
-              <div class="absolute inset-0 bg-green-500/0 group-hover:bg-green-500/[0.02] transition-colors duration-500" />
+            <SpotlightCard class="bg-card/50">
               <CardHeader>
                   <CardTitle class="text-[1.55rem] font-bold text-green-400">Bachelor of Computing & Info Sciences</CardTitle>
                   <CardDescription class="text-lg font-mono text-white/50">AUT (New Zealand) • 2014 - 2018</CardDescription>
@@ -174,7 +166,7 @@
                <CardContent>
                   <p class="text-base text-muted-foreground"><span class="text-green-500 font-semibold">Valedictorian</span> • Summa Cum Laude • GPA: 3.82/4.0</p>
               </CardContent>
-            </Card>
+            </SpotlightCard>
         </div>
       </section>
 

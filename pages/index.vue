@@ -1,38 +1,10 @@
 <template>
-  <div class="container py-10 space-y-16">
-    <!-- Hero Section -->
-    <section class="flex flex-col items-center text-center space-y-6 py-20 animate-fade-in-up">
-      <div class="relative">
-         <div class="absolute -inset-1 rounded-lg bg-gradient-to-r from-green-600 to-emerald-600 opacity-20 blur-xl animate-pulse"></div>
-         <h1 class="relative text-5xl font-extrabold tracking-tighter sm:text-6xl md:text-7xl lg:text-8xl bg-clip-text text-transparent bg-gradient-to-b from-white to-white/70">
-          Nhan Kiet <br class="hidden sm:block" />
-          <span class="text-green-500">To</span>
-        </h1>
-      </div>
-      
-      <p class="text-xl text-muted-foreground max-w-[700px] md:text-2xl leading-relaxed">
-        Senior AI & Data Engineer at <span class="text-white font-semibold">Sportsbet</span>. Architecting <span class="text-white font-semibold">MCP</span> ecosystems, <span class="text-white font-semibold">Real-time Pipelines</span>, and <span class="text-white font-semibold">Autonomous Agents</span>.
-      </p>
-      
-      <div class="flex flex-col sm:flex-row gap-4 mt-8">
-        <Button size="lg" class="h-12 px-10 text-lg rounded-full bg-green-600 hover:animate-google-gas text-white transition-all duration-700 border-none gap-2 relative overflow-hidden group/btn shadow-[0_0_20px_rgba(22,163,74,0.3)]" as-child>
-          <NuxtLink to="/projects">
-            <span class="relative z-10 flex items-center gap-2 font-bold tracking-tight"><Briefcase class="w-5 h-5" /> View Projects</span>
-            <!-- Gas Swirl Layer -->
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle,rgba(22,163,74,0.5)_0%,rgba(16,185,129,0.2)_40%,transparent_70%)] opacity-70 group-hover/btn:animate-gas-swirl pointer-events-none" />
-            <div class="absolute inset-0 bg-green-700/60 mix-blend-overlay" />
-          </NuxtLink>
-        </Button>
-        <Button size="lg" class="h-12 px-10 text-lg rounded-full bg-green-600 hover:animate-google-gas text-white transition-all duration-700 border-none gap-2 relative overflow-hidden group/btn shadow-[0_0_20px_rgba(22,163,74,0.3)]" as-child>
-          <NuxtLink to="/resume">
-             <span class="relative z-10 flex items-center gap-2 font-bold tracking-tight"><FileText class="w-5 h-5" /> View Resume</span>
-             <!-- Gas Swirl Layer -->
-             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle,rgba(22,163,74,0.5)_0%,rgba(16,185,129,0.2)_40%,transparent_70%)] opacity-70 group-hover/btn:animate-gas-swirl pointer-events-none" />
-             <div class="absolute inset-0 bg-green-700/60 mix-blend-overlay" />
-          </NuxtLink>
-        </Button>
-      </div>
-    </section>
+  <ParallaxHero
+    name="Nhan Kiet To"
+    tagline="Staff AI & Data Engineer"
+    cover-image="/images/hero-bg.png"
+  >
+    <div class="container py-10 space-y-16">
 
     <!-- Recent Projects -->
     <section class="space-y-8 animate-fade-in-up" style="animation-delay: 200ms;">
@@ -50,10 +22,7 @@
       </div>
       
       <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <Card v-for="project in recentProjects" :key="project._path" class="group relative overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(34,197,94,0.15)] border-[3px] border-white/10 bg-card hover:border-green-500/30 flex flex-col h-full">
-           <!-- Subtle Matrix Background Glow -->
-           <div class="absolute inset-0 bg-green-500/0 group-hover:bg-green-500/[0.03] transition-colors duration-500" />
-          
+        <SpotlightCard v-for="project in recentProjects" :key="project._path" class="flex flex-col h-full">
           <CardHeader>
             <CardTitle class="text-[1.55rem] font-bold text-green-500/90 transition-colors duration-300">{{ project.title }}</CardTitle>
           </CardHeader>
@@ -63,16 +32,13 @@
           </CardContent>
           
           <CardFooter class="pt-0 pb-10 flex justify-center">
-            <Button variant="default" as-child class="rounded-full px-10 py-3 h-auto text-sm font-bold bg-green-600 text-white hover:animate-google-gas transition-all duration-700 border-none relative overflow-hidden group/btn shadow-[0_0_25px_rgba(22,163,74,0.3)]">
+            <OrganicGasButton as-child class="rounded-full px-10 py-3 h-auto text-sm font-bold shadow-[0_0_25px_rgba(22,163,74,0.3)]">
               <NuxtLink :to="project._path">
-                <span class="relative z-10 tracking-tight">View Project</span>
-                <!-- Gas Swirl Layer -->
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle,rgba(22,163,74,0.4)_0%,rgba(16,185,129,0.15)_40%,transparent_70%)] opacity-70 group-hover/btn:animate-gas-swirl pointer-events-none" />
-                <div class="absolute inset-0 bg-green-700/60 mix-blend-overlay" />
+                <span class="tracking-tight">View Project</span>
               </NuxtLink>
-            </Button>
+            </OrganicGasButton>
           </CardFooter>
-        </Card>
+        </SpotlightCard>
 
         <!-- Coming Soon Card -->
         <div class="relative group rounded-xl border-dashed border-[3px] border-white/10 flex flex-col items-center justify-center p-6 text-center hover:border-green-500/60 hover:bg-green-500/5 transition-all duration-500 cursor-pointer h-full">
@@ -84,7 +50,8 @@
         </div>
       </div>
     </section>
-  </div>
+    </div>
+  </ParallaxHero>
 </template>
 
 <script setup lang="ts">
