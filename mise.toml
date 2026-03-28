@@ -1,10 +1,13 @@
 [tools]
 deno = "2.6.3"
 
+[env]
+_.path = ["{{env.USERPROFILE}}/.vite-plus/bin"]
+
 [tasks]
-dev = "deno run -A npm:nuxi dev"
-build = "deno run -A npm:nuxi build"
-generate = "deno run -A npm:nuxi generate"
-preview = "deno run -A npm:nuxi preview"
-install = "deno install"
-deploy = "mise run generate && deno run -A npm:gh-pages -d .output/public --dotfiles"
+dev = "vp exec nuxi dev"
+build = "vp exec nuxi build"
+generate = "vp exec nuxi generate"
+install = "vp install"
+preview = "vp exec nuxi preview"
+deploy = "vp exec nuxi generate && deno run -A npm:gh-pages -d .output/public --dotfiles"
