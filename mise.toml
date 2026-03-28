@@ -2,5 +2,9 @@
 deno = "2.6.3"
 
 [tasks]
-dev = "deno task dev"
-deploy = "deno task deploy"
+dev = "deno run -A npm:nuxi dev"
+build = "deno run -A npm:nuxi build"
+generate = "deno run -A npm:nuxi generate"
+preview = "deno run -A npm:nuxi preview"
+install = "deno install"
+deploy = "mise run generate && deno run -A npm:gh-pages -d .output/public --dotfiles"

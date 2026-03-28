@@ -10,26 +10,29 @@
 ## 🚀 Tech Stack
 
 - **Framework**: Nuxt 3 (Vue 3 + TypeScript)
-- **Runtime**: Deno
+- **Runtime**: Deno (local dev) / Vite+ (CI/CD)
 - **Styling**: Tailwind CSS + Shadcn UI
 - **Content**: Nuxt Content (Markdown-based)
 - **Deployment**: GitHub Pages (SSG)
-- **CI/CD**: GitHub Actions
+- **CI/CD**: GitHub Actions + [Vite+](https://viteplus.dev)
 
 ## 🛠️ Development
 
 ```bash
+# Install dependencies
+mise run install
+
 # Start dev server
-deno task dev
+mise run dev
 
 # Generate static site
-deno task generate
+mise run generate
 
 # Preview production build
-deno task preview
+mise run preview
 
 # Deploy to GitHub Pages
-deno task deploy
+mise run deploy
 ```
 
 ## 📦 Project Structure
@@ -37,7 +40,7 @@ deno task deploy
 ```
 .
 ├── .github/
-│   └── workflows/          # CI/CD pipelines
+│   └── workflows/          # CI/CD pipelines (Vite+)
 ├── components/             # Vue components
 │   ├── ui/                # Shadcn UI components
 │   ├── SpotlightCard.vue  # Custom card with hover effect
