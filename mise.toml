@@ -1,11 +1,12 @@
 [tools]
 deno = "2.6.3"
+viteplus = "0.1.2"
 
 [env]
-_.path = ["{{env.USERPROFILE}}/.vite-plus/bin"]
+_.path = ["F:/Apps/Git/usr/bin"]
 
 [tasks]
-dev = "vp exec nuxi dev"
+dev = "deno run -A npm:portless nhankiet vp exec nuxi dev"
 build = "vp exec nuxi build"
 generate = "vp exec nuxi generate"
 install = "vp install"

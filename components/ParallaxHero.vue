@@ -5,13 +5,9 @@
       ref="heroSection"
       class="relative h-screen w-full flex items-center justify-center"
     >
-      <!-- Parallax Background Image Layer -->
+      <!-- Background Image Layer -->
       <div 
         class="absolute inset-0 w-full h-full"
-        :style="{
-          transform: `translateY(${parallaxOffset}px)`,
-          transition: 'transform 0.1s ease-out'
-        }"
       >
         <!-- Image Container with Organic Gas Overlay -->
         <div class="relative w-full h-full">
@@ -58,12 +54,6 @@
           {{ tagline }}
         </p>
 
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce">
-          <div class="w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-2">
-            <div class="w-1 h-2 bg-white/50 rounded-full animate-pulse" />
-          </div>
-        </div>
       </div>
     </section>
 
@@ -90,7 +80,6 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const heroSection = ref<HTMLElement | null>(null);
-const parallaxOffset = ref(0);
 const breathScale = ref(0);
 const swirlRotation = ref(0);
 const gasOffsetX = ref(0);
@@ -99,12 +88,6 @@ const gasOffsetY = ref(0);
 let animationId: number;
 let startTime = Date.now();
 
-function handleScroll() {
-  if (!heroSection.value) return;
-  const scrollY = window.scrollY;
-  // Parallax effect: move background slower than scroll (0.5x speed)
-  parallaxOffset.value = scrollY * 0.5;
-}
 
 function updateAnimation() {
   const now = Date.now();
@@ -119,12 +102,10 @@ function updateAnimation() {
 }
 
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll, { passive: true });
   updateAnimation();
 });
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll);
   cancelAnimationFrame(animationId);
 });
 </script>
