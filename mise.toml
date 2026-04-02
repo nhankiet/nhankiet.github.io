@@ -1,14 +1,17 @@
 [tools]
-deno = "2.6.3"
 viteplus = "0.1.2"
 
 [env]
 _.path = ["F:/Apps/Git/usr/bin"]
 
 [tasks]
-dev = "deno run -A npm:portless nhankiet vp exec nuxi dev"
+# Core workflow tasks
+install = "vp install"
+dev = "vp env exec portless nhankiet vp exec nuxi dev"
 build = "vp exec nuxi build"
 generate = "vp exec nuxi generate"
-install = "vp install"
 preview = "vp exec nuxi preview"
-deploy = "vp exec nuxi generate && deno run -A npm:gh-pages -d .output/public --dotfiles"
+deploy = "vp exec nuxi generate && vp env exec npx gh-pages -d .output/public --dotfiles"
+
+# Convenience
+clean = "rm -rf node_modules .nuxt .output dist"
