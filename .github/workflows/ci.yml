@@ -17,13 +17,19 @@ jobs:
       - name: Setup Vite+
         uses: voidzero-dev/setup-vp@v1
         with:
-          node-version: "22"
+          node-version: "24"
           cache: true
           run-install: true
 
+      - name: Lint
+        run: vp lint
+
+      - name: Format check
+        run: vp fmt --check
+
       - name: Type check
-        run: npx nuxi typecheck
+        run: vp exec nuxi typecheck
         continue-on-error: true
 
       - name: Build check
-        run: npx nuxi generate
+        run: vp exec nuxi generate

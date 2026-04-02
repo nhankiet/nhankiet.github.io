@@ -13,5 +13,11 @@ generate = "vp exec nuxi generate"
 preview = "vp exec nuxi preview"
 deploy = "vp exec nuxi generate && vp env exec npx gh-pages -d .output/public --dotfiles"
 
+# Code quality
+lint = "vp lint"
+fmt = "vp fmt"
+check = "vp check"
+
 # Convenience
+all = "vp install && vp env exec portless nhankiet vp exec nuxi dev"
 clean = "rm -rf node_modules .nuxt .output dist"
