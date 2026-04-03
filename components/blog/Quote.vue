@@ -1,18 +1,37 @@
 <template>
   <figure class="my-32 flex flex-row items-stretch px-4 md:px-0 max-w-4xl mx-auto pointer-events-none select-none relative group">
-    <!-- The Heraldic Pen Column (Quill Pen Transfixing an Escroll) -->
+    <!-- The Heraldic Pen Column (Quill Pen + Ink Mark) -->
     <div class="flex flex-col items-center flex-shrink-0 mr-10 md:mr-16 pt-1">
-      <div class="text-green-500/60 group-hover:text-green-500 transition-colors duration-1000 mb-4 transform -rotate-[40deg] -translate-x-2">
-        <!-- Optimized Heraldic Quill SVG (High-Fidelity) -->
-        <svg class="w-14 h-14 drop-shadow-[0_0_15px_rgba(34,197,94,0.3)]" viewBox="0 0 100 100" fill="currentColor">
-          <!-- The Plume (Feather) -->
-          <path d="M85,15 C75,5 55,5 40,20 C30,30 25,45 28,60 C30,70 35,75 45,78 C55,80 70,75 80,65 C90,55 95,35 85,15 Z M45,65 C40,55 42,40 48,30 C55,20 65,15 75,18 C80,20 82,25 80,35 C75,45 65,55 55,60 C50,62 48,60 45,65 Z" />
-          <!-- The Nib/Stem -->
-          <path d="M28,60 L5,95 L15,95 L32,65 Z" />
+      <!-- 1. The Quill SVG (Positioned and Angled) -->
+      <div class="text-green-500/70 group-hover:text-green-500 transition-all duration-1000 mb-2 transform -rotate-[35deg] translate-x-1 origin-bottom">
+        <svg class="w-16 h-16 drop-shadow-[0_0_15px_rgba(34,197,94,0.3)] filter grayscale-[0.2] group-hover:grayscale-0" viewBox="0 0 100 100" fill="currentColor">
+          <!-- Main Rachis (Stem) -->
+          <path d="M48,95 L52,95 L52,70 C52,60 55,40 50,10 C45,40 48,60 48,70 L48,95 Z" opacity="0.8" />
+          <!-- Detailed Plume (Vane) -->
+          <path d="M50,10 C35,30 30,55 35,75 C38,85 45,90 50,90 C55,90 62,85 65,75 C70,55 65,30 50,10 Z M52,82 C55,75 58,60 55,45 C52,35 48,35 45,45 C42,60 45,75 48,82 L50,85 L52,82 Z" />
+          <!-- Plume Notches (Organic details) -->
+          <path d="M38,40 L32,35 Q30,38 34,42 Z M62,55 L68,52 Q70,55 64,58 Z M42,25 L38,20 Q36,22 40,27 Z" />
+          <!-- Nib (Pen point) -->
+          <path d="M49,95 L51,95 L50,100 Z" />
         </svg>
       </div>
-      <div class="w-2 flex-grow bg-green-500/60 shadow-[0_0_15px_rgba(34,197,94,0.1)] rounded-full"></div>
-      <div class="w-1.5 h-1.5 rotate-45 bg-green-500/30 mt-4 shadow-[0_0_8px_rgba(34,197,94,0.1)]"></div>
+
+      <!-- 2. The Mark SVG (Elegant Tapered Curve) -->
+      <div class="w-10 flex-grow relative -mt-1 group-hover:opacity-100 transition-opacity duration-1000">
+        <svg class="absolute inset-0 w-full h-full text-green-500/60 transition-all duration-1000 group-hover:text-green-500 drop-shadow-[0_0_20px_rgba(34,197,94,0.15)]" viewBox="0 0 40 1000" preserveAspectRatio="none" fill="currentColor">
+          <!-- Tapered S-Curve "Ink Stroke" -->
+          <path d="M 20 0 
+                   C 25 150, 35 350, 20 500 
+                   C 5 650, 15 850, 20 1000 
+                   L 18 1000 
+                   C 13 850, 3 650, 18 500 
+                   C 33 350, 23 150, 18 0 
+                   Z" />
+        </svg>
+      </div>
+
+      <!-- Nib Point / Finishing Mark -->
+      <div class="w-2.5 h-2.5 rotate-45 bg-green-500/40 mt-6 shadow-[0_0_10px_rgba(34,197,94,0.2)] group-hover:bg-green-500 group-hover:scale-125 transition-all duration-1000"></div>
     </div>
 
     <!-- The Content Area -->
