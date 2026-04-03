@@ -83,5 +83,16 @@ export default defineNuxtConfig({
       }
     }
   },
-  compatibilityDate: '2024-07-03',
+  compatibilityDate: '2026-04-03',
+  future: {
+    compatibilityVersion: 4
+  },
+  experimental: {
+    contentCollections: true
+  },
+  vite: {
+    optimizeDeps: {
+      include: []
+    }
+  }
 })

@@ -1,23 +1,15 @@
 [tools]
-viteplus = "0.1.2"
+node = "24.14.1"
+pnpm = "10.5.2"
+viteplus = "0.1.15"
 
 [env]
 _.path = ["F:/Apps/Git/usr/bin"]
 
 [tasks]
-# Core workflow tasks
 install = "vp install"
-dev = "vp env exec portless nhankiet vp exec nuxi dev"
-build = "vp exec nuxi build"
-generate = "vp exec nuxi generate"
-preview = "vp exec nuxi preview"
-deploy = "vp exec nuxi generate && vp env exec npx gh-pages -d .output/public --dotfiles"
+clean   = "rm -rf .nuxt .output node_modules pnpm-lock.yaml"
 
-# Code quality
-lint = "vp lint"
-fmt = "vp fmt"
-check = "vp check"
-
-# Convenience
-all = "vp install && vp env exec portless nhankiet vp exec nuxi dev"
-clean = "rm -rf node_modules .nuxt .output dist"
+[tasks.all]
+depends = ["install"]
+run = "vp exec portless nhankiet vp exec nuxi dev"

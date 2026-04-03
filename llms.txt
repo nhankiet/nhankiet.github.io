@@ -1,0 +1,29 @@
+# Nhan Kiet To - Staff AI & Data Engineer Portfolio
+
+> A high-performance, minimalist portfolio built on the Nuxt 4 "Future" stack, orchestrated by VitePlus and Mise. Designed for 2026-standard web architecture.
+
+## Core Tech Stack
+- **Framework:** Nuxt 4.4.2 (Native v4 mode)
+- **Engine:** VitePlus (vp) v0.1.15
+- **Manager:** Mise (Infrastructure-as-Code binary management)
+- **Styling:** Tailwind CSS v3.4.19 (Modernized Bridge)
+- **Architecture:** Arsenal vs. Battlefield (Stateless Components + Stateful Pipelines)
+
+## Project Arsenal (Stateless Libs)
+- [/components/ParallaxHero.vue](components/ParallaxHero.vue): Cinematic 5s-reveal hero engine.
+- [/components/ui/](components/ui/): Atomic Shadcn/Nuxt components with strict composition.
+- [/libs/utils.ts](libs/utils.ts): Pure, side-effect-free functional logic.
+
+## Project Battlefield (Stateful Pages)
+- [/pages/index.vue](pages/index.vue): The central assembly point (Hero + Case Studies).
+- [/pages/blog/](pages/blog/): High-density Nuxt Content v3 document flow.
+- [/pages/resume.vue](pages/resume.vue): Optimized professional data visualization.
+
+## Engineering Rules
+- **Hybrid Versioning:** Tools/Core strictly pinned; Utilities relaxed (^). See [.agents/workflows/rule_versioning.md](.agents/workflows/rule_versioning.md).
+- **Composition:** Arsenal (stateless) must be separated from Battlefields (stateful). See [.agents/workflows/architecture_composition.md](.agents/workflows/architecture_composition.md).
+
+## Development Setup
+- `vp install`: Syncs the entire hermetic environment.
+- `vp run dev`: Launches the 2026-standard Nuxt 4 development server.
+- `vp run build`: Generates the production-grade static bundle for GH Pages.

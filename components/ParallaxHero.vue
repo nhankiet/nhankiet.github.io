@@ -10,15 +10,38 @@
         class="absolute inset-0 w-full h-full"
       >
         <!-- Image Container with Organic Gas Overlay -->
-        <div class="relative w-full h-full">
-          <!-- Background Image (Placeholder - you can swap this) -->
+        <!-- Image Container with Organic Gas Overlay -->
+        <!-- Image Container with Organic Gas Overlay -->
+        <div class="relative w-full h-full bg-black overflow-hidden">
+          <!-- Background Image with Ultra-Slow Settle Zoom -->
           <div 
-            class="absolute inset-0 bg-gradient-to-br from-green-900/20 via-black to-emerald-900/10"
-            :style="coverImage ? `background-image: url(${coverImage}); background-size: cover; background-position: center;` : ''"
+            class="absolute inset-0 bg-gradient-to-br from-green-900/60 via-black to-emerald-900/40"
+            :class="[isLoaded ? 'opacity-100 scale-100 blur-0' : 'opacity-0 scale-130 blur-2xl']"
+            :style="[
+                coverImage ? `background-image: url(${coverImage}); background-size: cover; background-position: center; shadow: inset 0 0 150px black;` : '',
+                { transition: 'all 6000ms cubic-bezier(0.2, 1, 0.2, 1)' }
+            ]"
           />
           
+          <!-- Tactical Split Reveal (5s Curtain) -->
+          <div class="absolute inset-0 z-5 pointer-events-none flex">
+            <!-- Left Panel -->
+            <div 
+              class="h-full bg-black transition-all"
+              :style="{ width: isLoaded ? '0%' : '50%', transition: 'all 5000ms cubic-bezier(0.45, 0, 0.55, 1)' }"
+            />
+            <!-- Right Panel -->
+            <div 
+              class="h-full bg-black ml-auto transition-all"
+              :style="{ width: isLoaded ? '0%' : '50%', transition: 'all 5000ms cubic-bezier(0.45, 0, 0.55, 1)' }"
+            />
+          </div>
+
           <!-- Organic Gas Overlay Engine -->
-          <div class="absolute inset-0 pointer-events-none overflow-hidden">
+          <div 
+            class="absolute inset-0 pointer-events-none overflow-hidden transition-opacity duration-[3000ms] delay-500"
+            :class="isLoaded ? 'opacity-100' : 'opacity-0'"
+          >
             <!-- Blob 1: Multi-phase Breathing -->
             <div 
               class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-[radial-gradient(circle,rgba(34,197,94,0.08)_0%,transparent_60%)] transition-transform duration-[4000ms] ease-in-out"
@@ -44,13 +67,17 @@
       <!-- Hero Content (Fixed Position) -->
       <div class="relative z-10 text-center px-6 max-w-5xl">
         <div class="relative animate-fade-in-up">
-          <div class="absolute -inset-1 rounded-lg bg-gradient-to-r from-green-600 to-emerald-600 opacity-20 blur-xl animate-pulse"></div>
-          <h1 class="relative text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white to-white/70">
+          <!-- Sharper focused glow -->
+          <div class="absolute -inset-2 rounded-full bg-green-500/30 blur-3xl animate-pulse"></div>
+          
+          <h1 
+            class="relative text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-white to-green-300 bg-[length:200%_auto] animate-prism-flow drop-shadow-[0_0_15px_rgba(0,0,0,0.8)]"
+          >
             {{ name }}
           </h1>
         </div>
         
-        <p class="mt-6 text-2xl md:text-3xl text-white/80 font-light tracking-wide animate-fade-in-up" style="animation-delay: 200ms;">
+        <p class="mt-6 text-2xl md:text-3xl text-white font-medium tracking-wide animate-fade-in-up drop-shadow-md" style="animation-delay: 200ms;">
           {{ tagline }}
         </p>
 
@@ -63,6 +90,18 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+@keyframes prism-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-prism-flow {
+  animation: prism-flow 5s ease infinite;
+}
+</style>
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
@@ -79,6 +118,7 @@ const props = withDefaults(defineProps<Props>(), {
   coverImage: ''
 });
 
+const isLoaded = ref(false);
 const heroSection = ref<HTMLElement | null>(null);
 const breathScale = ref(0);
 const swirlRotation = ref(0);
@@ -103,6 +143,10 @@ function updateAnimation() {
 
 onMounted(() => {
   updateAnimation();
+  // Cinematic settle delay
+  setTimeout(() => {
+    isLoaded.value = true;
+  }, 100);
 });
 
 onUnmounted(() => {
