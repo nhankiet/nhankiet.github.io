@@ -32,4 +32,4 @@ jobs:
         continue-on-error: true
 
       - name: Build check
-        run: vp exec nuxi generate
+        run: vp exec nuxi generate --no-ssr

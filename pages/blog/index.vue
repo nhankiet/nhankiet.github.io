@@ -20,10 +20,17 @@
           />
         </div>
 
-        <CardHeader class="space-y-2">
-          <div class="flex items-center gap-2 text-xs text-muted-foreground font-mono">
-            <Icon name="heroicons:calendar-days" class="w-3.5 h-3.5" />
-            <span>{{ formatDate(article.date) }}</span>
+        <CardHeader class="space-y-4">
+          <div class="flex items-center gap-3 text-[10px] uppercase tracking-widest text-muted-foreground font-medium">
+            <div class="flex items-center gap-1.5">
+              <Icon name="heroicons:calendar-days" class="w-3.5 h-3.5" />
+              <span>{{ formatDate(article.date) }}</span>
+            </div>
+            <span class="w-1 h-1 rounded-full bg-border"></span>
+            <div class="flex items-center gap-1.5">
+              <Icon name="heroicons:clock" class="w-3.5 h-3.5" />
+              <span>{{ calculateReadingTime(article.body) }} min read</span>
+            </div>
           </div>
           <CardTitle class="leading-tight text-foreground transition-colors duration-300 text-xl font-bold">
             <NuxtLink :to="article.path" class="hover:text-primary transition-colors">
@@ -72,6 +79,28 @@ const formatDate = (dateString: string | Date | undefined) => {
   }).format(date).replace(',', '')
 
   return `${time} ${datePart}`
+}
+
+const calculateReadingTime = (body: any) => {
+  if (!body?.value) return 0
+  
+  // Standard reading speed (words per minute)
+  const WPM = 225
+  
+  // Extract all text content from the Nuxt Content v3 document structure
+  const extractText = (node: any): string => {
+    if (typeof node === 'string') return node
+    if (Array.isArray(node)) return node.map(extractText).join(' ')
+    if (node?.children) return extractText(node.children)
+    if (node?.value) return node.value
+    return ''
+  }
+
+  const contentText = extractText(body.value)
+  const words = contentText.trim().split(/\s+/).length
+  const minutes = Math.ceil(words / WPM)
+  
+  return Math.max(1, minutes)
 }
 
 definePageMeta({

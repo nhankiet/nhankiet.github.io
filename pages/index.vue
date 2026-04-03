@@ -22,7 +22,7 @@
       </div>
       
       <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <SpotlightCard v-for="project in recentProjects" :key="project._path" class="flex flex-col h-full">
+        <SpotlightCard v-for="project in recentProjects" :key="project.path" class="flex flex-col h-full">
           <CardHeader>
             <CardTitle class="text-[1.55rem] font-bold text-green-500/90 transition-colors duration-300">{{ project.title }}</CardTitle>
           </CardHeader>
@@ -33,7 +33,7 @@
           
           <CardFooter class="pt-0 pb-10 flex justify-center">
             <OrganicGasButton as-child class="rounded-full px-10 py-3 h-auto text-sm font-bold shadow-[0_0_25px_rgba(22,163,74,0.3)]">
-              <NuxtLink :to="project._path">
+              <NuxtLink :to="project.path">
                 <span class="tracking-tight">View Project</span>
               </NuxtLink>
             </OrganicGasButton>
@@ -58,9 +58,9 @@
 import { Briefcase, FileText, Rocket } from 'lucide-vue-next'
 
 const { data: recentProjects } = await useAsyncData('recent-projects', () => 
-  queryContent('/projects')
-    .sort({ date: -1 })
+  queryCollection('projects')
+    .order('date', 'DESC')
     .limit(2)
-    .find()
+    .all()
 )
 </script>

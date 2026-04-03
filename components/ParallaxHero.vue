@@ -19,21 +19,21 @@
             :class="[isLoaded ? 'opacity-100 scale-100 blur-0' : 'opacity-0 scale-130 blur-2xl']"
             :style="[
                 coverImage ? `background-image: url(${coverImage}); background-size: cover; background-position: center; shadow: inset 0 0 150px black;` : '',
-                { transition: 'all 6000ms cubic-bezier(0.2, 1, 0.2, 1)' }
+                { transition: 'all 2000ms cubic-bezier(0.1, 1, 0.2, 1)' }
             ]"
           />
           
-          <!-- Tactical Split Reveal (5s Curtain) -->
+          <!-- Tactical Split Reveal (2.5s Curtain) -->
           <div class="absolute inset-0 z-5 pointer-events-none flex">
             <!-- Left Panel -->
             <div 
               class="h-full bg-black transition-all"
-              :style="{ width: isLoaded ? '0%' : '50%', transition: 'all 5000ms cubic-bezier(0.45, 0, 0.55, 1)' }"
+              :style="{ width: isLoaded ? '0%' : '50%', transition: 'all 2500ms cubic-bezier(0.7, 0, 0.84, 0)' }"
             />
             <!-- Right Panel -->
             <div 
               class="h-full bg-black ml-auto transition-all"
-              :style="{ width: isLoaded ? '0%' : '50%', transition: 'all 5000ms cubic-bezier(0.45, 0, 0.55, 1)' }"
+              :style="{ width: isLoaded ? '0%' : '50%', transition: 'all 2500ms cubic-bezier(0.7, 0, 0.84, 0)' }"
             />
           </div>
 

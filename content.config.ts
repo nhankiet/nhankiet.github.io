@@ -12,6 +12,16 @@ export default defineContentConfig({
         image: z.string().optional(),
         tags: z.array(z.string()).optional()
       })
+    }),
+    projects: defineCollection({
+      type: 'page',
+      source: 'projects/**',
+      schema: z.object({
+        title: z.string(),
+        description: z.string(),
+        date: z.string(),
+        image: z.string().optional()
+      })
     })
   }
 })
