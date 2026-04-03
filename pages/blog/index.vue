@@ -5,30 +5,44 @@
       <p class="text-muted-foreground">Thoughts, tutorials, and insights.</p>
     </div>
 
-    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       <SpotlightCard 
         v-for="article in articles" 
-        :key="article._path"
-        class="flex flex-col h-full"
+        :key="article.path"
+        class="flex flex-col h-full overflow-hidden border border-border/50 hover:border-primary/30 transition-all duration-300"
       >
-        <CardHeader>
-             <CardTitle class="leading-normal text-green-500/90 transition-colors duration-300 text-[1.55rem] font-bold">
-                <NuxtLink :to="article._path" class="">
-                  {{ article.title }}
-                </NuxtLink>
-             </CardTitle>
+        <!-- Featured Image -->
+        <div v-if="article.image" class="aspect-video w-full overflow-hidden border-b border-border/50">
+          <img 
+            :src="article.image" 
+            :alt="article.title"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        </div>
+
+        <CardHeader class="space-y-2">
+          <div class="flex items-center gap-2 text-xs text-muted-foreground font-mono">
+            <Icon name="heroicons:calendar-days" class="w-3.5 h-3.5" />
+            <span>{{ formatDate(article.date) }}</span>
+          </div>
+          <CardTitle class="leading-tight text-foreground transition-colors duration-300 text-xl font-bold">
+            <NuxtLink :to="article.path" class="hover:text-primary transition-colors">
+              {{ article.title }}
+            </NuxtLink>
+          </CardTitle>
         </CardHeader>
         
         <CardContent class="flex-grow">
-          <p class="text-muted-foreground group-hover:text-foreground transition-colors duration-300 line-clamp-3 text-lg leading-relaxed">{{ article.description }}</p>
+          <p class="text-muted-foreground group-hover:text-foreground transition-colors duration-300 line-clamp-3 text-sm leading-relaxed">
+            {{ article.description }}
+          </p>
         </CardContent>
         
-        <CardFooter class="pt-0 pb-10 flex justify-center">
-          <OrganicGasButton as-child class="rounded-full px-10 py-3 h-auto text-sm font-bold shadow-[0_0_25px_rgba(22,163,74,0.3)]">
-            <NuxtLink :to="article._path">
-              <span class="tracking-tight">Read more</span>
-            </NuxtLink>
-          </OrganicGasButton>
+        <CardFooter class="pt-2 pb-6 flex justify-start px-6">
+          <NuxtLink :to="article.path" class="text-xs font-bold text-primary hover:underline flex items-center gap-1 group/link">
+            Read article 
+            <Icon name="heroicons:arrow-right" class="w-3 h-3 transition-transform group-hover/link:translate-x-0.5" />
+          </NuxtLink>
         </CardFooter>
       </SpotlightCard>
     </div>
@@ -39,7 +53,7 @@
 
 
 
-const { data: articles } = await useAsyncData('blog', () => queryContent('/blog').sort({ date: -1 }).find())
+const { data: articles } = await useAsyncData('blog', () => queryCollection('blog').order('date', 'DESC').all())
 
 const formatDate = (dateString: string | Date | undefined) => {
   if (!dateString) return ''

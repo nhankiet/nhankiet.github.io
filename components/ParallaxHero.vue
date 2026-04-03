@@ -37,22 +37,24 @@
             />
           </div>
 
-          <!-- Organic Gas Overlay Engine -->
+            <!-- Organic Gas Overlay Engine -->
           <div 
-            class="absolute inset-0 pointer-events-none overflow-hidden transition-opacity duration-[3000ms] delay-500"
+            class="absolute inset-0 pointer-events-none overflow-hidden transition-opacity delay-500"
             :class="isLoaded ? 'opacity-100' : 'opacity-0'"
+            :style="{ transitionDuration: '3000ms' }"
           >
             <!-- Blob 1: Multi-phase Breathing -->
             <div 
-              class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-[radial-gradient(circle,rgba(34,197,94,0.08)_0%,transparent_60%)] transition-transform duration-[4000ms] ease-in-out"
+              class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-[radial-gradient(circle,rgba(34,197,94,0.08)_0%,transparent_60%)] transition-transform ease-in-out"
               :style="{
-                transform: `translate(-50%, -50%) scale(${1 + breathScale}) rotate(${swirlRotation}deg) translate(${gasOffsetX}px, ${gasOffsetY}px)`
+                transform: `translate(-50%, -50%) scale(${1 + breathScale}) rotate(${swirlRotation}deg) translate(${gasOffsetX}px, ${gasOffsetY}px)`,
+                transitionDuration: '4000ms'
               }"
             />
 
             <!-- Blob 2: Counter-swirl Offset -->
             <div 
-              class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[radial-gradient(circle,rgba(16,185,129,0.05)_0%,transparent_50%)] transition-transform duration-[6000ms] ease-linear"
+              class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[radial-gradient(circle,rgba(16,185,129,0.05)_0%,transparent_50%)] transition-transform ease-linear"
               :style="{
                 transform: `translate(-50%, -50%) scale(${1.1 - breathScale}) rotate(${-swirlRotation * 0.6}deg) translate(${-gasOffsetX * 1.2}px, ${-gasOffsetY * 0.5}px)`
               }"

@@ -1,46 +1,50 @@
 <template>
   <div class="container py-10 max-w-3xl">
-    <ContentDoc v-slot="{ doc }">
+    <div v-if="page">
       <div class="mb-6">
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink as-child>
-              <NuxtLink to="/">Home</NuxtLink>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-             <!-- Determine parent based on path -->
-            <BreadcrumbLink as-child v-if="$route.path.startsWith('/blog')">
-              <NuxtLink to="/blog">Blog</NuxtLink>
-            </BreadcrumbLink>
-            <BreadcrumbLink as-child v-else-if="$route.path.startsWith('/projects')">
-              <NuxtLink to="/projects">Projects</NuxtLink>
-            </BreadcrumbLink>
-            <BreadcrumbLink as-child v-else>
-               <NuxtLink :to="'/' + $route.path.split('/')[1]">{{ $route.path.split('/')[1] }}</NuxtLink>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>{{ doc.title }}</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-    </div>
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink as-child>
+                <NuxtLink to="/">Home</NuxtLink>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+               <!-- Determine parent based on path -->
+              <BreadcrumbLink as-child v-if="$route.path.startsWith('/blog')">
+                <NuxtLink to="/blog">Blog</NuxtLink>
+              </BreadcrumbLink>
+              <BreadcrumbLink as-child v-else-if="$route.path.startsWith('/projects')">
+                <NuxtLink to="/projects">Projects</NuxtLink>
+              </BreadcrumbLink>
+              <BreadcrumbLink as-child v-else>
+                 <NuxtLink :to="'/' + $route.path.split('/')[1]">{{ $route.path.split('/')[1] }}</NuxtLink>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>{{ page.title }}</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </div>
 
       <article class="prose dark:prose-invert max-w-none">
-        <h1 class="text-4xl font-extrabold tracking-tight lg:text-5xl mb-4">{{ doc.title }}</h1>
-        <p class="text-xl text-muted-foreground mb-8">{{ doc.description }}</p>
+        <h1 class="text-4xl font-extrabold tracking-tight lg:text-5xl mb-4">{{ page.title }}</h1>
+        <p class="text-xl text-muted-foreground mb-8">{{ page.description }}</p>
         <hr class="my-8" />
-        <ContentRenderer :value="doc" />
+        <ContentRenderer :value="page" />
       </article>
-    </ContentDoc>
+    </div>
+    <div v-else>
+      <h1 class="text-3xl font-bold">Document not found</h1>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useRoute } from 'vue-router'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -49,6 +53,15 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
+
+const route = useRoute()
+
+// Nuxt Content v3: query the collection based on the route path prefix (e.g., 'blog')
+const collection = route.path.split('/')[1] as any
+
+const { data: page } = await useAsyncData(route.path, () => {
+  return queryCollection(collection).path(route.path).first()
+})
 </script>
 
 <script lang="ts">
