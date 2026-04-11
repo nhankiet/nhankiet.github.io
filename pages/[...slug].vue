@@ -38,30 +38,29 @@
 </template>
 
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
+const VALID_COLLECTIONS = ['blog', 'projects'] as const;
+type CollectionName = typeof VALID_COLLECTIONS[number];
 
-const route = useRoute()
+const route = useRoute();
 
-// Nuxt Content v3: query the collection based on the route path prefix (e.g., 'blog')
-const collection = route.path.split('/')[1] as any
+// Validate the collection segment from the route path
+const segment = route.path.split('/')[1];
+if (!VALID_COLLECTIONS.includes(segment as CollectionName)) {
+  throw createError({ statusCode: 404, message: 'Page not found' });
+}
+const collection: CollectionName = segment as CollectionName;
 
 const { data: page } = await useAsyncData(route.path, () => {
-  return queryCollection(collection).path(route.path).first()
-})
-</script>
+  return queryCollection(collection).path(route.path).first();
+});
 
-<script lang="ts">
-export default defineNuxtComponent({
-  async setup() {
-    definePageMeta({
-      validate: async (route) => {
-        // Exclude listing pages that have their own index.vue
-        const regex = /^\/(blog|projects|resume)$/
-        return !regex.test(route.path)
-      }
-    })
+definePageMeta({
+  validate: async (route) => {
+    // Exclude listing pages that have their own index.vue
+    const regex = /^\/(blog|projects|resume)$/;
+    return !regex.test(route.path);
   }
-})
+});
 </script>
 
 <style>

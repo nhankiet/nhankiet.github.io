@@ -2,26 +2,26 @@
   <div class="container py-10 max-w-4xl">
     <!-- Header -->
 
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 px-4 animation-fade-in-up">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 px-4 animate-fade-in-up">
       <div>
         <h1 class="text-4xl font-bold tracking-tight text-white">Nhan Kiet To</h1>
         <p class="text-xl text-muted-foreground mt-1 font-medium">Senior AI & Data Engineer @ Sportsbet</p>
       </div>
       <div class="flex gap-2">
         <Button variant="outline" size="sm" class="border-white/10 hover:bg-white/5 text-white/70">
-          <Download class="w-4 h-4 mr-2" />
+          <Icon name="lucide:download" class="w-4 h-4 mr-2" />
           Download PDF
         </Button>
         <OrganicGasButton size="sm" class="rounded px-6 py-2 shadow-[0_0_15px_rgba(22,163,74,0.3)]">
            <NuxtLink to="mailto:hi@nhanto.me" class="flex items-center gap-2 font-bold">
-             <Send class="w-4 h-4" />
+             <Icon name="lucide:send" class="w-4 h-4" />
              Contact Me
            </NuxtLink>
         </OrganicGasButton>
       </div>
     </div>
 
-    <div class="space-y-12 animation-fade-in-up" style="animation-delay: 100ms;">
+    <div class="space-y-12 animate-fade-in-up" style="animation-delay: 100ms;">
       <!-- About -->
       <section class="space-y-3 px-4">
         <h2 class="text-2xl font-semibold tracking-tight border-b border-white/5 pb-2 text-white/90">Professional Summary</h2>
@@ -176,7 +176,7 @@
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
            <div class="space-y-3">
              <h3 class="font-medium text-green-500/90 flex items-center gap-2">
-               <Bot class="w-4 h-4" /> AI & Agents
+               <Icon name="lucide:bot" class="w-4 h-4" /> AI & Agents
              </h3>
              <ul class="text-sm text-muted-foreground space-y-2">
                <li class="flex items-center gap-2">Model Context Protocol (MCP)</li>
@@ -187,7 +187,7 @@
            </div>
            <div class="space-y-3">
              <h3 class="font-medium text-green-500/90 flex items-center gap-2">
-               <Database class="w-4 h-4" /> Data Engineering
+               <Icon name="lucide:database" class="w-4 h-4" /> Data Engineering
              </h3>
              <ul class="text-sm text-muted-foreground space-y-2">
                <li class="flex items-center gap-2">Kafka / Flink / MSK</li>
@@ -198,7 +198,7 @@
            </div>
            <div class="space-y-3">
              <h3 class="font-medium text-green-500/90 flex items-center gap-2">
-               <Cloud class="w-4 h-4" /> AWS Cloud
+               <Icon name="lucide:cloud" class="w-4 h-4" /> AWS Cloud
              </h3>
              <ul class="text-sm text-muted-foreground space-y-2">
                <li class="flex items-center gap-2">Lambda / Fargate / ECS</li>
@@ -209,7 +209,7 @@
            </div>
            <div class="space-y-3">
              <h3 class="font-medium text-green-500/90 flex items-center gap-2">
-               <Code class="w-4 h-4" /> Development
+               <Icon name="lucide:code" class="w-4 h-4" /> Development
              </h3>
              <ul class="text-sm text-muted-foreground space-y-2">
                <li class="flex items-center gap-2">Python / TypeScript</li>
@@ -225,8 +225,6 @@
 </template>
 
 <script setup lang="ts">
-import { Download, Send, Bot, Database, Cloud, Code } from 'lucide-vue-next'
-
 definePageMeta({
   title: 'Resume'
 })

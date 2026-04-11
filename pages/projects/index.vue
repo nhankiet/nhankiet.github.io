@@ -8,7 +8,7 @@
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       <SpotlightCard 
         v-for="project in projects" 
-        :key="project._path"
+        :key="project.path"
         class="flex flex-col h-full"
       >
         <CardHeader>
@@ -21,7 +21,7 @@
         
         <CardFooter class="pt-0 pb-10 flex justify-center">
             <OrganicGasButton as-child class="rounded-full px-10 py-3 h-auto text-sm font-bold shadow-[0_0_25px_rgba(22,163,74,0.3)]">
-              <NuxtLink :to="project._path">
+              <NuxtLink :to="project.path">
                 <span class="tracking-tight">View Project</span>
               </NuxtLink>
             </OrganicGasButton>
@@ -32,30 +32,11 @@
 </template>
 
 <script setup lang="ts">
-
-
-const { data: projects } = await useAsyncData('projects', () => queryContent('/projects').sort({ date: -1 }).find())
-
-const formatDate = (dateString: string | Date | undefined) => {
-  if (!dateString) return ''
-  const date = new Date(dateString)
-  
-  const time = new Intl.DateTimeFormat('en-GB', {
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false
-  }).format(date)
-
-  const datePart = new Intl.DateTimeFormat('en-GB', {
-    day: 'numeric',
-    month: 'short',
-    year: '2-digit'
-  }).format(date).replace(',', '')
-
-  return `${time} ${datePart}`
-}
+const { data: projects } = await useAsyncData('projects', () =>
+  queryCollection('projects').order('date', 'DESC').all()
+);
 
 definePageMeta({
   layout: 'default'
-})
+});
 </script>

@@ -1,10 +1,10 @@
 <template>
   <div
-    ref="heroRef"
+    ref="elementRef"
     class="relative overflow-hidden rounded-3xl border border-white/5 bg-black transition-all duration-700"
-    @mousemove="handleMouseMove"
+    @mousemove="onMouseMove"
     @mouseenter="isHovered = true"
-    @mouseleave="resetMouse"
+    @mouseleave="onResetHover"
   >
     <!-- ORGANIC GAS BACKGROUND ENGINE -->
     <div class="absolute inset-0 pointer-events-none overflow-hidden">
@@ -64,62 +64,36 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref } from 'vue';
+import { useMouseSpotlight } from '~/composables/useMouseSpotlight';
+import { useOrganicGas } from '~/composables/useOrganicGas';
 
-const heroRef = ref<HTMLElement | null>(null);
-const mouseX = ref(0);
-const mouseY = ref(0);
+const { elementRef, mouseX, mouseY, isHovered, handleMouseMove, resetHover } = useMouseSpotlight();
+const { breathScale, swirlRotation, gasOffsetX, gasOffsetY } = useOrganicGas();
+
 const centerX = ref(0);
 const centerY = ref(0);
-const isHovered = ref(false);
-
-const breathScale = ref(0);
-const swirlRotation = ref(0);
-const gasOffsetX = ref(0);
-const gasOffsetY = ref(0);
 const filamentAngle = ref(0);
 const filamentLength = ref(0);
 
-let animationId: number;
-let startTime = Date.now();
+function onMouseMove(e: MouseEvent) {
+  handleMouseMove(e);
 
-function handleMouseMove(e: MouseEvent) {
-  if (!heroRef.value) return;
-  const rect = heroRef.value.getBoundingClientRect();
-  mouseX.value = e.clientX - rect.left;
-  mouseY.value = e.clientY - rect.top;
+  // Calculate filament geometry from center to cursor
+  const el = (elementRef.value as any)?.$el ?? elementRef.value;
+  if (!(el instanceof HTMLElement)) return;
+  const rect = el.getBoundingClientRect();
   centerX.value = rect.width / 2;
   centerY.value = rect.height / 2;
 
   const dx = mouseX.value - centerX.value;
   const dy = mouseY.value - centerY.value;
   filamentAngle.value = Math.atan2(dy, dx) * (180 / Math.PI);
-  filamentLength.value = Math.sqrt(dx * dx + dy * dy) / 100; // Normalized for banner scale
+  filamentLength.value = Math.sqrt(dx * dx + dy * dy) / 100;
 }
 
-function resetMouse() {
-  isHovered.value = false;
-  // Slowly shrink filament
+function onResetHover() {
+  resetHover();
   filamentLength.value = 0;
 }
-
-function updateAnimation() {
-  const now = Date.now();
-  const elapsed = (now - startTime) / 1000;
-
-  breathScale.value = (Math.sin(elapsed * 1.5) * 0.04) + (Math.sin(elapsed * 0.7) * 0.02);
-  swirlRotation.value = elapsed * 8;
-  gasOffsetX.value = Math.sin(elapsed * 0.6) * 20;
-  gasOffsetY.value = Math.cos(elapsed * 0.5) * 15;
-
-  animationId = requestAnimationFrame(updateAnimation);
-}
-
-onMounted(() => {
-  updateAnimation();
-});
-
-onUnmounted(() => {
-  cancelAnimationFrame(animationId);
-});
 </script>

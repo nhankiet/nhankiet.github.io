@@ -33,5 +33,4 @@
 </template>
 
 <script setup lang="ts">
-import { Github } from 'lucide-vue-next'
 </script>

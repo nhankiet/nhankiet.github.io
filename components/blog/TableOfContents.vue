@@ -19,20 +19,6 @@
           </div>
           <span class="tracking-tight text-lg leading-none">{{ link.text }}</span>
         </a>
-        
-        <!-- Support for Nested H3 links if present -->
-        <ul v-if="link.children && link.children.length > 0" class="pl-12 space-y-4 border-l border-white/5 ml-3">
-          <li v-for="sublink in link.children" :key="sublink.id">
-            <a 
-              :href="`#${sublink.id}`" 
-              class="text-sm font-medium text-muted-foreground/60 hover:text-green-300 transition-all duration-300 flex items-center gap-3 group/subitem"
-              @click.prevent="scrollTo(sublink.id)"
-            >
-              <Icon name="ph:arrow-bend-down-right-bold" class="w-4 h-4 text-green-500/20 group-hover/subitem:text-green-500 transition-colors" />
-              {{ sublink.text }}
-            </a>
-          </li>
-        </ul>
       </li>
     </ul>
   </nav>

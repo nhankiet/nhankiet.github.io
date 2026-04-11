@@ -43,7 +43,7 @@
         <!-- Coming Soon Card -->
         <div class="relative group rounded-xl border-dashed border-[3px] border-white/10 flex flex-col items-center justify-center p-6 text-center hover:border-green-500/60 hover:bg-green-500/5 transition-all duration-500 cursor-pointer h-full">
            <div class="mb-4 rounded-full bg-green-500/5 p-4 transition-colors">
-             <Rocket class="w-10 h-10 text-green-500/50 group-hover:text-green-400" />
+             <Icon name="lucide:rocket" class="w-10 h-10 text-green-500/50 group-hover:text-green-400" />
            </div>
            <h3 class="font-bold text-xl text-green-500/80 transition-colors">Coming Soon</h3>
            <p class="text-base text-white/40 mt-2">More exciting projects in the works.</p>
@@ -55,8 +55,6 @@
 </template>
 
 <script setup lang="ts">
-import { Briefcase, FileText, Rocket } from 'lucide-vue-next'
-
 const { data: recentProjects } = await useAsyncData('recent-projects', () => 
   queryCollection('projects')
     .order('date', 'DESC')

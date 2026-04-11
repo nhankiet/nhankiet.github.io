@@ -1,11 +1,11 @@
 <template>
   <Button
-    ref="btnRef"
+    ref="elementRef"
     v-bind="$attrs"
     class="relative overflow-hidden group/gas-btn bg-green-600 hover:bg-green-700 text-white border-none transition-all duration-300"
     @mousemove="handleMouseMove"
     @mouseenter="isHovered = true"
-    @mouseleave="resetMouse"
+    @mouseleave="resetHover"
   >
     <!-- Content Slot -->
     <span class="relative z-20 flex items-center gap-2">
@@ -39,23 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { useMouseSpotlight } from '~/composables/useMouseSpotlight';
 
-const btnRef = ref<any>(null);
-const mouseX = ref(0);
-const mouseY = ref(0);
-const isHovered = ref(false);
-
-function handleMouseMove(e: MouseEvent) {
-  const el = btnRef.value?.$el || btnRef.value;
-  if (!el || !(el instanceof HTMLElement)) return;
-  
-  const rect = el.getBoundingClientRect();
-  mouseX.value = e.clientX - rect.left;
-  mouseY.value = e.clientY - rect.top;
-}
-
-function resetMouse() {
-  isHovered.value = false;
-}
+const { elementRef, mouseX, mouseY, isHovered, handleMouseMove, resetHover } = useMouseSpotlight();
 </script>

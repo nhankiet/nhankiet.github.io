@@ -1,5 +1,7 @@
 # Design System — nhankiet.github.io
 
+> **⚠️ OBSOLETE** — This document is out of sync with the codebase as of 2026-04-10. Do not rely on it for implementation decisions. It will be regenerated once the current refactoring stabilizes.
+
 > The visual language for Nhan Kiet To's portfolio. Dark-first, green-accented, organic & alive.
 
 ---

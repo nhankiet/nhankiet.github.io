@@ -1,6 +1,6 @@
 <template>
   <Button
-    ref="btnRef"
+    ref="elementRef"
     v-bind="$attrs"
     class="relative overflow-hidden group/btn"
     @mousemove="handleMouseMove"
@@ -44,23 +44,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { useMouseSpotlight } from '~/composables/useMouseSpotlight';
 
-const btnRef = ref<any>(null);
-const mouseX = ref(0);
-const mouseY = ref(0);
-const isHovered = ref(false);
-
-function handleMouseMove(e: MouseEvent) {
-  if (!btnRef.value) return;
-  // Use $el if it's a component
-  const el = btnRef.value?.$el || btnRef.value;
-  if (!el || !(el instanceof HTMLElement)) return;
-  
-  const rect = el.getBoundingClientRect();
-  mouseX.value = e.clientX - rect.left;
-  mouseY.value = e.clientY - rect.top;
-}
+const { elementRef, mouseX, mouseY, isHovered, handleMouseMove } = useMouseSpotlight();
 </script>
 
 <style scoped>

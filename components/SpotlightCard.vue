@@ -1,14 +1,11 @@
 <template>
   <div
-    ref="cardRef"
+    ref="elementRef"
     class="group relative overflow-hidden rounded-xl border-[3px] border-white/10 bg-card transition-all duration-500 hover:border-green-500/30 hover:shadow-[0_20px_40px_-15px_rgba(34,197,94,0.15)]"
     @mousemove="handleMouseMove"
     @mouseenter="isHovered = true"
-    @mouseleave="isHovered = false"
+    @mouseleave="resetHover"
   >
-    <!-- Idle Swirl Layer (Removed as requested) -->
-
-
     <!-- Cursor Follow Layer (The "Talos" spotlight) -->
     <div
       class="absolute inset-0 pointer-events-none transition-opacity duration-500 opacity-0 group-hover:opacity-100"
@@ -41,21 +38,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { useMouseSpotlight } from '~/composables/useMouseSpotlight';
 
-const cardRef = ref<HTMLElement | null>(null);
-const mouseX = ref(0);
-const mouseY = ref(0);
-const isHovered = ref(false);
-
-function handleMouseMove(e: MouseEvent) {
-  if (!cardRef.value) return;
-  const rect = cardRef.value.getBoundingClientRect();
-  mouseX.value = e.clientX - rect.left;
-  mouseY.value = e.clientY - rect.top;
-}
+const { elementRef, mouseX, mouseY, isHovered, handleMouseMove, resetHover } = useMouseSpotlight();
 </script>
-
-<style scoped>
-/* Webkit mask composite for the border glow trick */
-</style>

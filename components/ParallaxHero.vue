@@ -10,8 +10,6 @@
         class="absolute inset-0 w-full h-full"
       >
         <!-- Image Container with Organic Gas Overlay -->
-        <!-- Image Container with Organic Gas Overlay -->
-        <!-- Image Container with Organic Gas Overlay -->
         <div class="relative w-full h-full bg-black overflow-hidden">
           <!-- Background Image with Ultra-Slow Settle Zoom -->
           <div 
@@ -37,7 +35,7 @@
             />
           </div>
 
-            <!-- Organic Gas Overlay Engine -->
+          <!-- Organic Gas Overlay Engine -->
           <div 
             class="absolute inset-0 pointer-events-none overflow-hidden transition-opacity delay-500"
             :class="isLoaded ? 'opacity-100' : 'opacity-0'"
@@ -106,7 +104,8 @@
 </style>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted } from 'vue';
+import { useOrganicGas } from '~/composables/useOrganicGas';
 
 interface Props {
   name?: string;
@@ -114,44 +113,21 @@ interface Props {
   coverImage?: string;
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   name: 'Nhan Kiet To',
   tagline: 'Staff AI & Data Engineer',
   coverImage: ''
 });
 
+const { breathScale, swirlRotation, gasOffsetX, gasOffsetY } = useOrganicGas();
+
 const isLoaded = ref(false);
 const heroSection = ref<HTMLElement | null>(null);
-const breathScale = ref(0);
-const swirlRotation = ref(0);
-const gasOffsetX = ref(0);
-const gasOffsetY = ref(0);
-
-let animationId: number;
-let startTime = Date.now();
-
-
-function updateAnimation() {
-  const now = Date.now();
-  const elapsed = (now - startTime) / 1000;
-
-  breathScale.value = (Math.sin(elapsed * 1.5) * 0.04) + (Math.sin(elapsed * 0.7) * 0.02);
-  swirlRotation.value = elapsed * 8;
-  gasOffsetX.value = Math.sin(elapsed * 0.6) * 20;
-  gasOffsetY.value = Math.cos(elapsed * 0.5) * 15;
-
-  animationId = requestAnimationFrame(updateAnimation);
-}
 
 onMounted(() => {
-  updateAnimation();
   // Cinematic settle delay
   setTimeout(() => {
     isLoaded.value = true;
   }, 100);
-});
-
-onUnmounted(() => {
-  cancelAnimationFrame(animationId);
 });
 </script>

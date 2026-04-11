@@ -57,51 +57,9 @@
 </template>
 
 <script setup lang="ts">
-
-
+import { formatDate, calculateReadingTime } from '~/composables/useFormatting';
 
 const { data: articles } = await useAsyncData('blog', () => queryCollection('blog').order('date', 'DESC').all())
-
-const formatDate = (dateString: string | Date | undefined) => {
-  if (!dateString) return ''
-  const date = new Date(dateString)
-  
-  const time = new Intl.DateTimeFormat('en-GB', {
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false
-  }).format(date)
-
-  const datePart = new Intl.DateTimeFormat('en-GB', {
-    day: 'numeric',
-    month: 'short',
-    year: '2-digit'
-  }).format(date).replace(',', '')
-
-  return `${time} ${datePart}`
-}
-
-const calculateReadingTime = (body: any) => {
-  if (!body?.value) return 0
-  
-  // Standard reading speed (words per minute)
-  const WPM = 225
-  
-  // Extract all text content from the Nuxt Content v3 document structure
-  const extractText = (node: any): string => {
-    if (typeof node === 'string') return node
-    if (Array.isArray(node)) return node.map(extractText).join(' ')
-    if (node?.children) return extractText(node.children)
-    if (node?.value) return node.value
-    return ''
-  }
-
-  const contentText = extractText(body.value)
-  const words = contentText.trim().split(/\s+/).length
-  const minutes = Math.ceil(words / WPM)
-  
-  return Math.max(1, minutes)
-}
 
 definePageMeta({
   layout: 'default'

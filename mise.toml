@@ -1,5 +1,5 @@
 [tools]
-node = "24.14.1"
+node = "20.19.2"
 pnpm = "10.5.2"
 viteplus = "0.1.15"
 
